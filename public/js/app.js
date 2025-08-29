@@ -1,4 +1,4 @@
-// Digital Ekub Frontend Application
+//  Ekub Frontend Application
 class DigitalEkub {
     constructor() {
         this.currentUser = null;
