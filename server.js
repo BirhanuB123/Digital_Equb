@@ -504,7 +504,15 @@ app.get('/api/dashboard', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`Digital Ekub server running on port ${PORT}`);
-    console.log(`Visit http://localhost:${PORT} to access the website`);
-});
+const PORT = process.env.PORT || 3000;
+
+// For Vercel deployment
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Digital Ekub server running on port ${PORT}`);
+        console.log(`Visit http://localhost:${PORT} to access the website`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;
