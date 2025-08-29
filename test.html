@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Ekub API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Digital Ekub API Test Page</h1>
+    <p>This page tests the API endpoints to ensure they're working correctly.</p>
+
+    <div class="test-section">
+        <h2>Server Status</h2>
+        <button onclick="testServerStatus()">Test Server Status</button>
+        <div id="serverStatus"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Member Registration</h2>
+        <button onclick="testRegistration()">Test Registration</button>
+        <div id="registrationResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Member Login</h2>
+        <button onclick="testLogin()">Test Login</button>
+        <div id="loginResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Dashboard Data</h2>
+        <button onclick="testDashboard()">Test Dashboard</button>
+        <div id="dashboardResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Current Round</h2>
+        <button onclick="testCurrentRound()">Test Current Round</button>
+        <div id="roundResult"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        
+        async function testServerStatus() {
+            try {
+                const response = await fetch('http://localhost:3000/');
+                const result = document.getElementById('serverStatus');
+                if (response.ok) {
+                    result.innerHTML = '<span class="success">✅ Server is running and responding!</span>';
+                } else {
+                    result.innerHTML = '<span class="error">❌ Server responded with status: ' + response.status + '</span>';
+                }
+            } catch (error) {
+                document.getElementById('serverStatus').innerHTML = '<span class="error">❌ Server connection failed: ' + error.message + '</span>';
+            }
+        }
+
+        async function testRegistration() {
+            const testUser = {
+                name: 'Test User ' + Date.now(),
+                email: 'test' + Date.now() + '@example.com',
+                phone: '+251911123456',
+                password: 'testpassword123'
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testUser)
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('registrationResult');
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <span class="success">✅ Registration successful!</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <span class="error">❌ Registration failed: ${result.error}</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('registrationResult').innerHTML = '<span class="error">❌ Registration test failed: ' + error.message + '</span>';
+            }
+        }
+
+        async function testLogin() {
+            const testUser = {
+                email: 'test@example.com',
+                password: 'testpassword123'
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testUser)
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('loginResult');
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <span class="success">✅ Login successful!</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <span class="error">❌ Login failed: ${result.error}</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('loginResult').innerHTML = '<span class="error">❌ Login test failed: ' + error.message + '</span>';
+            }
+        }
+
+        async function testDashboard() {
+            try {
+                const response = await fetch(`${API_BASE}/dashboard`);
+                const result = await response.json();
+                const resultDiv = document.getElementById('dashboardResult');
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <span class="success">✅ Dashboard data retrieved!</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <span class="error">❌ Dashboard failed: ${result.error}</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('dashboardResult').innerHTML = '<span class="error">❌ Dashboard test failed: ' + error.message + '</span>';
+            }
+        }
+
+        async function testCurrentRound() {
+            try {
+                const response = await fetch(`${API_BASE}/rounds/current`);
+                const result = await response.json();
+                const resultDiv = document.getElementById('roundResult');
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <span class="success">✅ Round data retrieved!</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <span class="error">❌ Round data failed: ${result.error}</span>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `>
+                }
+            } catch (error) {
+                document.getElementById('roundResult').innerHTML = '<span class="error">❌ Round test failed: ' + error.message + '</span>';
+            }
+        }
+
+        // Auto-test server status on page load
+        window.onload = function() {
+            testServerStatus();
+        };
+    </script>
+</body>
+</html>

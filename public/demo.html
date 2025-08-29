@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Ekub - Bilingual Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-coins text-2xl mr-3"></i>
+                    <h1 class="text-2xl font-bold">Digital Ekub</h1>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="languageBtn" class="bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-globe mr-2"></i>አማርኛ
+                    </button>
+                    <button class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-home mr-2"></i><span data-translate="nav_home">Home</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Demo Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4" data-translate="hero_title">
+                Welcome to Digital Ekub
+            </h1>
+            <p class="text-xl text-gray-600 mb-8" data-translate="hero_subtitle">
+                A modern digital platform for collective money saving and fair distribution
+            </p>
+            <div class="bg-blue-100 p-6 rounded-lg max-w-2xl mx-auto">
+                <h3 class="text-lg font-semibold text-blue-800 mb-4">🌍 Bilingual Features</h3>
+                <p class="text-blue-700 mb-4">
+                    This demo showcases the bilingual capabilities of Digital Ekub, supporting both English and Amharic languages.
+                </p>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="text-left">
+                        <h4 class="font-semibold">English</h4>
+                        <ul class="text-blue-600">
+                            <li>• Member registration</li>
+                            <li>• Payment tracking</li>
+                            <li>• Lucky member selection</li>
+                            <li>• Dashboard analytics</li>
+                        </ul>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-semibold">አማርኛ</h4>
+                        <ul class="text-blue-600">
+                            <li>• የአባል ምዝገባ</li>
+                            <li>• የክፍያ መከታተል</li>
+                            <li>• ተሳላሰ አባል ምርጫ</li>
+                            <li>• ዳሽቦርድ ትንተና</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Demo Section -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🔤 Language Switching</h3>
+                <p class="text-gray-600 mb-4">
+                    Click the language button in the navigation to switch between English and Amharic. The entire interface will update instantly.
+                </p>
+                <div class="bg-gray-100 p-4 rounded">
+                    <p class="text-sm text-gray-700">
+                        <strong>Current Language:</strong> <span id="currentLangDisplay">English</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">📱 User Experience</h3>
+                <p class="text-gray-600 mb-4">
+                    Language preference is saved in the browser and automatically applied on future visits. Perfect for Ethiopian communities.
+                </p>
+                <div class="bg-green-100 p-4 rounded">
+                    <p class="text-sm text-green-700">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Language preference saved locally
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Demo -->
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center" data-translate="how_it_works_title">
+                How Digital Ekub Works
+            </h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center p-4">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-2xl text-blue-600"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2" data-translate="step_1_title">1. Join as Member</h4>
+                    <p class="text-gray-600 text-sm" data-translate="step_1_desc">
+                        Register and become a member of our digital ekub community. Each member contributes 5,000 birr monthly.
+                    </p>
+                </div>
+                
+                <div class="text-center p-4">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-alt text-2xl text-green-600"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2" data-translate="step_2_title">2. Bi-weekly Selection</h4>
+                    <p class="text-gray-600 text-sm" data-translate="step_2_desc">
+                        Every 2 weeks, we randomly select one lucky member to receive half of the collected amount.
+                    </p>
+                </div>
+                
+                <div class="text-center p-4">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-2xl text-purple-600"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2" data-translate="step_3_title">3. Fair Distribution</h4>
+                    <p class="text-gray-600 text-sm" data-translate="step_3_desc">
+                        Our system ensures all members get a chance before anyone is selected again, maintaining fairness.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Indicator -->
+        <div class="fixed bottom-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg z-40">
+            <div class="flex items-center">
+                <i class="fas fa-globe mr-2"></i>
+                <span id="currentLanguage">English</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script>
+        // Initialize language manager
+        const langManager = new LanguageManager();
+        
+        // Update language display
+        function updateLangDisplay() {
+            const display = document.getElementById('currentLangDisplay');
+            if (display) {
+                display.textContent = langManager.currentLanguage === 'en' ? 'English' : 'አማርኛ';
+            }
+        }
+        
+        // Update display when language changes
+        langManager.translatePage();
+        updateLangDisplay();
+        
+        // Listen for language changes
+        document.addEventListener('DOMContentLoaded', () => {
+            const langBtn = document.getElementById('languageBtn');
+            if (langBtn) {
+                langBtn.addEventListener('click', () => {
+                    langManager.toggleLanguage();
+                    updateLangDisplay();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
